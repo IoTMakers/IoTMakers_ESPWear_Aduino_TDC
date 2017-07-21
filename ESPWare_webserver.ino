@@ -21,34 +21,26 @@ SOFTWARE.
 #include <ESP8266WiFi.h>
 
 const char* ssid = "YOURSSID";
-const char* password = "YOURPASSWORD";
+const char* password = "YOURPASSWD";
 
 WiFiServer server(80);
 
 void setup() {
   Serial.begin(115200);
   delay(10);
-
-  // prepare GPIO2
-  pinMode(2, OUTPUT);
-  digitalWrite(2, 0);
-
+  
   // prepare GPIO4
   pinMode(4, OUTPUT);
   digitalWrite(4, 0);
   
-  // prepare GPIO5
-  pinMode(5, OUTPUT);
-  digitalWrite(5, 0);
+  // prepare GPIO2
+  pinMode(2, OUTPUT);
+  digitalWrite(2, 0);
 
   // prepare GPI14
   pinMode(14, OUTPUT);
   digitalWrite(14, 0);
-
-  // prepare GPI15
-  pinMode(15, OUTPUT);
-  digitalWrite(15, 0);
-
+  
   // prepare GPI16
   pinMode(16, OUTPUT);
   digitalWrite(16, 0);
@@ -94,13 +86,12 @@ void loop() {
 
   buf += "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<!DOCTYPE HTML>\r\n";
   buf += "<html lang=\"en\"><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\"/>\r\n";
-  buf += "<title>ESPWear Web Server</title>";
+  buf += "<title>ESPWear ESP8266 Web Server</title>";
   buf += "<style>.c{text-align: center;} div,input{padding:5px;font-size:1em;} input{width:80%;} body{text-align: center;font-family:verdana;} button{border:0;border-radius:0.3rem;background-color:#1fa3ec;color:#fff;line-height:2.4rem;font-size:1.2rem;width:100%;} .q{float: right;width: 64px;text-align: right;}</style>";
   buf += "</head>";
   buf += "<h3>ESPWeare</h3>";
-  buf += "<p>GPIO2 <a href=\"?function=led2_on\"><button>ON</button></a>&nbsp;<a href=\"?function=led2_off\"><button>OFF</button></a></p>";
+    buf += "<p>GPIO2 <a href=\"?function=led2_on\"><button>ON</button></a>&nbsp;<a href=\"?function=led2_off\"><button>OFF</button></a></p>";
   buf += "<p>GPIO4 <a href=\"?function=led4_on\"><button>ON</button></a>&nbsp;<a href=\"?function=led4_off\"><button>OFF</button></a></p>";
-  buf += "<p>GPIO5 <a href=\"?function=led5_on\"><button>ON</button></a>&nbsp;<a href=\"?function=led5_off\"><button>OFF</button></a></p>";
   buf += "<p>GPI14 <a href=\"?function=led14_on\"><button>ON</button></a>&nbsp;<a href=\"?function=led14_off\"><button>OFF</button></a></p>";
   buf += "<p>GPI16 <a href=\"?function=led16_on\"><button>ON</button></a>&nbsp;<a href=\"?function=led16_off\"><button>OFF</button></a></p>";
   buf += "<h4>Criado por Pedro Minatel</h4>";
@@ -114,10 +105,6 @@ void loop() {
     digitalWrite(2, 1);
   else if (req.indexOf("led2_off") != -1)
     digitalWrite(2, 0);
-  else if (req.indexOf("led5_on") != -1)
-    digitalWrite(5, 1);
-  else if (req.indexOf("led5_off") != -1)
-    digitalWrite(5, 0);
   else if (req.indexOf("led4_on") != -1)
     digitalWrite(4, 1);
   else if (req.indexOf("led4_off") != -1)
